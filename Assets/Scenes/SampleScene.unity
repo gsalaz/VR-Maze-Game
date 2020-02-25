@@ -3424,7 +3424,6 @@ MonoBehaviour:
   forceAmount: 10
   camera: {fileID: 963194228}
   cubeIsOnTheGround: 1
-  timeoutDestroyer: 0
   barrel: {fileID: 5066473020788141486, guid: f6a786544310e4be18d467611396ba4e, type: 3}
   ball: {fileID: 1905636354376312731, guid: 563b8f6aae6ff48829b3da89a7b0b990, type: 3}
 --- !u!136 &1653183954

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Respawn : MonoBehaviour
 {
-	[SerializeField] private AudioSource fall;
+	//[SerializeField] private AudioSource fall;
 	[SerializeField] private Transform respawnPoint;
 	
 
@@ -12,7 +12,7 @@ public class Respawn : MonoBehaviour
 
 		if (other.gameObject.tag == "Player")
 		{
-			fall.Play(5);
+			//fall.Play();
 			other.transform.rotation = Quaternion.identity;
 			other.GetComponent<Rigidbody>().velocity = new Vector3 (0,0,0);
 			other.transform.position = respawnPoint.transform.position;
