@@ -5,56 +5,81 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 	public float forceAmount;
+    public Transform camera;
     private Rigidbody rb;
-    public bool cubeIsOnTheGround = true;
+    float cam_h, cam_v;
     private float horizontalAxisValue, verticalAxisValue;
-    float horizontalSpeed = 2.0f;
-	float verticalSpeed = 2.0f;
+
+    float horizontalSpeed = 3.0f;
+	float verticalSpeed = 3.0f;
+
+    public bool cubeIsOnTheGround = true;
+
+    public Rigidbody barrel;
+    public Rigidbody ball;
+    private AudioSource whoosh;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        whoosh = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
-    	float h = Input.GetAxis("Mouse X") * horizontalSpeed;
-        float v = Input.GetAxis("Mouse Y") * verticalSpeed;
+    	cam_h += Input.GetAxis("Mouse X") * horizontalSpeed;
+        cam_v += Input.GetAxis("Mouse Y") * verticalSpeed;
 
         horizontalAxisValue = Input.GetAxis("Horizontal");
         verticalAxisValue = Input.GetAxis("Vertical");
-        transform.Rotate(v*-1, h, 0);
 
         if(Input.GetButtonDown("Jump") && cubeIsOnTheGround) {
+            Debug.Log("here");
         	rb.AddForce(new Vector3(0, 5, 0), ForceMode.Impulse);
         	cubeIsOnTheGround = false;
         }
+        
+        if(Input.GetMouseButtonDown(1)) {
+            RaycastHit hit;
+            if (Physics.Raycast(camera.position, camera.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
+            {
+                Rigidbody clone;
+                clone = Instantiate(barrel, hit.point, Quaternion.identity);
+            }
+            else {
+                Debug.Log("Moved");
+                Rigidbody clone;
+                clone = Instantiate(barrel, hit.point + new Vector3(0,0,5), Quaternion.identity);
+            }
 
-        int layerMask = 1 << 8;
-		layerMask = ~layerMask;
+        }
 
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layerMask))
-        {
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
-            Debug.Log("Did Hit");
+        if (Input.GetMouseButtonDown(0)) {
+
+            Rigidbody clone;
+            clone = Instantiate(ball, camera.position, Quaternion.identity);
+            clone.AddForce(camera.forward * 500);
+            whoosh.Play();
+
+            Destroy(clone.gameObject, 5);
+            Destroy(clone, 5);
         }
-        else
-        {
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
-            Debug.Log("Did not Hit");
-        }
+
     }
 
     private void FixedUpdate()
     {
-        rb.AddForce(horizontalAxisValue * forceAmount, 0, verticalAxisValue * forceAmount);
+        camera.eulerAngles = (new Vector3(cam_v * (-1), cam_h, 0));
+
+        rb.AddForce(camera.right * horizontalAxisValue * forceAmount +
+              camera.forward * verticalAxisValue * forceAmount);
+      
     }
 
     private void OnCollisionEnter(Collision collision) {
-    	if(collision.gameObject.tag == "Floor") {
+    	if(collision.gameObject.tag == "Floor" || collision.gameObject.tag == "Object") {
     		cubeIsOnTheGround = true;
     	}
     }
