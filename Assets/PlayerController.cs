@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using System.Collections;
 
-public class PlayerController : MonoBehaviour
+public class MyPlayerController : MonoBehaviour
 {
 	public float forceAmount;
     public Transform camera;
@@ -87,8 +87,8 @@ public class PlayerController : MonoBehaviour
             clone.AddForce(camera.forward * 500);
             whoosh.Play();
 
-            Destroy(clone.gameObject, 5);
-            Destroy(clone, 5);
+            //Destroy(clone.gameObject, 5);
+            //Destroy(clone, 5);
         }
 
         if (numOfBarrels != 0 && numOfBarrels == BarrellHit.numHit)
