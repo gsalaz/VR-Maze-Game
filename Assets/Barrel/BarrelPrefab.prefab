@@ -46,7 +46,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 27634086048744930}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: aa2c947c333024e618fb1e1cac0743d5, type: 3}
@@ -147,7 +147,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 764c649ff6f5c4c5f99d344f63a1b5f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explode: {fileID: 8300000, guid: aa2c947c333024e618fb1e1cac0743d5, type: 3}
+  explode:
+    soundFXName: Default Sound
   plusone: {fileID: 5660512004433616850, guid: 126be1c69b1084a84b0182efcd9a64c5, type: 3}
 --- !u!1001 &27634086048769036
 PrefabInstance:
@@ -248,7 +249,8 @@ PrefabInstance:
       propertyPath: m_CollisionDetection
       value: 2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6455706, guid: 9c53a6fa310081c42931978fc8146c29, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9c53a6fa310081c42931978fc8146c29, type: 3}
 --- !u!1 &27634086048744930 stripped
 GameObject:

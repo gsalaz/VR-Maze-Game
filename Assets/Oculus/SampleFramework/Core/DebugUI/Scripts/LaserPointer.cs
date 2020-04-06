@@ -27,7 +27,10 @@ public class LaserPointer : OVRCursor
     public GameObject cursorVisual;
     public float maxLength = 10.0f;
 
-    private LaserBeamBehavior _laserBeamBehavior = LaserBeamBehavior.OnWhenHitTarget;
+    public GameObject menu;
+    private Boolean menuUp = true;
+
+    public LaserBeamBehavior _laserBeamBehavior;
 
     public LaserBeamBehavior laserBeamBehavior
     {
@@ -134,5 +137,24 @@ public class LaserPointer : OVRCursor
     void OnDisable()
     {
         if(cursorVisual) cursorVisual.SetActive(false);
+    }
+
+    void Update()
+    {
+        if (OVRInput.GetUp(OVRInput.Button.Start, OVRInput.Controller.LTouch)){
+            if (menuUp = true)
+            {
+                menu.SetActive(false);
+                menuUp = false;
+            }
+            else
+            {
+                menu.transform.position += _forward + new Vector3(0, 3, 0);
+                menu.SetActive(true);
+                menuUp = true;
+            }
+           
+        }
+
     }
 }

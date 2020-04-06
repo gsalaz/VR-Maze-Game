@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using OVR;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class BarrellHit : MonoBehaviour
 {
-    public AudioClip explode;
+    public SoundFXRef explode;
     public GameObject plusone;
 
     public static int numHit = 0;
@@ -19,7 +20,7 @@ public class BarrellHit : MonoBehaviour
     {
         if(collision.gameObject.tag == "Ball") {
 
-            AudioSource.PlayClipAtPoint(explode, transform.position);
+            explode.PlaySoundAt(transform.position);
 
             GameObject clone;
             clone = Instantiate(plusone, transform.position + new Vector3(0,1,0), Quaternion.identity);

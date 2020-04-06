@@ -1,22 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using OVR;
 using UnityEngine;
 
 public class BallBounce : OVRGrabbable
 {
-    public AudioSource bounce;
-    public AudioSource whoosh;
+    public SoundFXRef bounce;
+    public SoundFXRef whoosh;
 
     // Start is called before the first frame update
     void Start()
     {
-        bounce = GetComponent<AudioSource>();
-        whoosh = GetComponent<AudioSource>();
+        //bounce = GetComponent<AudioSource>();
+        //whoosh = GetComponent<AudioSource>();
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        bounce.Play();
+        bounce.PlaySoundAt(transform.position);
     }
 
     public override void GrabBegin(OVRGrabber hand, Collider grabPoint)
@@ -36,7 +37,7 @@ public class BallBounce : OVRGrabbable
     public override void GrabEnd(Vector3 linearVelocity, Vector3 angularVelocity)
     {
         base.GrabEnd(linearVelocity, angularVelocity);
-        whoosh.Play();
+        whoosh.PlaySoundAt(transform.position);
         Destroy(gameObject, 5);
     }
 }
