@@ -11,8 +11,6 @@ public class BallBounce : OVRGrabbable
     // Start is called before the first frame update
     void Start()
     {
-        //bounce = GetComponent<AudioSource>();
-        //whoosh = GetComponent<AudioSource>();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -22,6 +20,8 @@ public class BallBounce : OVRGrabbable
 
     public override void GrabBegin(OVRGrabber hand, Collider grabPoint)
     {
+        Rigidbody ballRigidbody = gameObject.GetComponent<Rigidbody>();
+        ballRigidbody.isKinematic = false;
         base.GrabBegin(hand, grabPoint);
 
         if(grabPoint.Equals(OVRInput.Controller.LTouch)) {
@@ -36,6 +36,7 @@ public class BallBounce : OVRGrabbable
 
     public override void GrabEnd(Vector3 linearVelocity, Vector3 angularVelocity)
     {
+     
         base.GrabEnd(linearVelocity, angularVelocity);
         whoosh.PlaySoundAt(transform.position);
         Destroy(gameObject, 5);

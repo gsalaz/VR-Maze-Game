@@ -142,7 +142,7 @@ public class LaserPointer : OVRCursor
     void Update()
     {
         if (OVRInput.GetUp(OVRInput.Button.Start, OVRInput.Controller.LTouch)){
-            if (menuUp = true)
+            if (menuUp == true)
             {
                 menu.SetActive(false);
                 menuUp = false;
