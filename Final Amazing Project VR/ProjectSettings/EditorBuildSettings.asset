@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/The_Maze.unity
+    guid: d4d3da43ab133ef42aa6b67939715910
+  - enabled: 1
+    path: Assets/Scenes/PuzzleA.unity
+    guid: ffe11b491ac824243b505f18619b8240
+  - enabled: 1
+    path: Assets/Scenes/PuzzleB.unity
+    guid: 13df0b6d074822b40a34e848488e49c4
+  - enabled: 1
+    path: Assets/Scenes/PuzzleC.unity
+    guid: 80c7164b407df8d4392c2df6897a9860
+  - enabled: 0
+    path: Assets/Scenes/World.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 0
+    path: Assets/Scenes/PuzzleA.unity
+    guid: 10fc7c3dddb72431b8363e49c7706eee
+  - enabled: 0
+    path: Assets/Scenes/PuzzleB.unity
+    guid: 94fb269d24db94431aaa1fee8b7c0f50
+  - enabled: 1
+    path: Assets/Scenes/PuzzleC.unity
+    guid: 6fbfd29f83f874241a64a06d7ec6cfa1
+  m_configObjects: {}
